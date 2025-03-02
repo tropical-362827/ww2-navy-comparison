@@ -2,8 +2,25 @@
 // 第二次世界大戦 各国海軍艦艇比較アプリケーションのメインコンポーネント
 
 import React, { useEffect, useState } from 'react';
+import { countries, shipTypes } from './shipData';
+
+// 艦艇データのインポート
+import franceDestroyers from './shipData/franceDestroyers';
+import franceShips from './shipData/franceShips';
+import germanyDestroyers from './shipData/germanyDestroyers';
+import germanyShips from './shipData/germanyShips';
+import italyDestroyers from './shipData/italyDestroyers';
+import italyShips from './shipData/italyShips';
+import japanDestroyers from './shipData/japanDestroyers';
+import japanShips from './shipData/japanShips';
+import sovietDestroyers from './shipData/sovietDestroyers';
+import sovietShips from './shipData/sovietShips';
+import ukDestroyers from './shipData/ukDestroyers';
+import ukShips from './shipData/ukShips';
+import usaDestroyers from './shipData/usaDestroyers';
+import usaShips from './shipData/usaShips';
+
 import { navalBattles } from './navalBattles';
-import { countries, shipData as initialShipData, shipTypes } from './shipData';
 
 const WW2NavyComparison = () => {
   // 状態管理
@@ -25,7 +42,25 @@ const WW2NavyComparison = () => {
 
   // 初期データのロード
   useEffect(() => {
-    setShipData(initialShipData);
+    // 各国の艦艇データと駆逐艦データを統合
+    const mergeShipsAndDestroyers = (ships, destroyers) => {
+      const merged = { ...ships };
+      merged.destroyer = destroyers;
+      return merged;
+    };
+
+    // 各国のデータを集約
+    const combinedShipData = {
+      japan: mergeShipsAndDestroyers(japanShips, japanDestroyers),
+      usa: mergeShipsAndDestroyers(usaShips, usaDestroyers),
+      uk: mergeShipsAndDestroyers(ukShips, ukDestroyers),
+      germany: mergeShipsAndDestroyers(germanyShips, germanyDestroyers),
+      france: mergeShipsAndDestroyers(franceShips, franceDestroyers),
+      italy: mergeShipsAndDestroyers(italyShips, italyDestroyers),
+      soviet: mergeShipsAndDestroyers(sovietShips, sovietDestroyers)
+    };
+
+    setShipData(combinedShipData);
     setLoading(false);
   }, []);
 
@@ -140,8 +175,8 @@ const WW2NavyComparison = () => {
         <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 mt-2">
           <h3 className="font-bold">データの正確性に関する注意</h3>
           <ul className="list-disc pl-6">
-            <li>駆逐艦データは数が非常に多いため、実際の史実と比べて不正確・不完全な場合があります。</li>
-            <li>その他の艦種についても、完全な史実再現を保証するものではなく、一部データに誤りが含まれている可能性があります。</li>
+            <li>実際の史実と比べて一部の艦艇や情報が省略されている場合があります。</li>
+            <li>就役日や退役/沈没日には一部不正確な情報が含まれている可能性があります。</li>
             <li>このアプリは教育・娯楽目的であり、正確な史実研究のためには専門文献を参照してください。</li>
           </ul>
         </div>
@@ -183,7 +218,7 @@ const WW2NavyComparison = () => {
               <label htmlFor={`filter-${shipType.id}`} className="flex items-center">
                 <span>{shipType.name}</span>
                 {shipType.id === 'destroyer' && (
-                  <span className="text-xs text-gray-500 ml-1">（捕捉可能なもののみ）</span>
+                  <span className="text-xs text-gray-500 ml-1">（とても不完全）</span>
                 )}
               </label>
             </div>
@@ -224,7 +259,6 @@ const WW2NavyComparison = () => {
         </div>
       </div>
 
-
       {/* 艦船比較 */}
       <div className="flex flex-col sm:flex-row gap-4 mb-6">
         {/* 左側の国 */}
@@ -258,6 +292,7 @@ const WW2NavyComparison = () => {
                             <p className="font-bold">{ship.name}</p>
                             <p>就役: {formatFullDate(ship.commissioned)}</p>
                             <p>{ship.fate ? `退役/沈没: ${formatFullDate(ship.fate)}` : '現役'}</p>
+                            {ship.notes && <p className="text-gray-300 mt-1">{ship.notes}</p>}
                           </div>
                         </div>
                       ))}
@@ -300,6 +335,7 @@ const WW2NavyComparison = () => {
                             <p className="font-bold">{ship.name}</p>
                             <p>就役: {formatFullDate(ship.commissioned)}</p>
                             <p>{ship.fate ? `退役/沈没: ${formatFullDate(ship.fate)}` : '現役'}</p>
+                            {ship.notes && <p className="text-gray-300 mt-1">{ship.notes}</p>}
                           </div>
                         </div>
                       ))}
@@ -352,7 +388,7 @@ const WW2NavyComparison = () => {
       </div>
 
       <div className="mt-4 text-sm text-gray-600">
-        <p className="text-center">※このアプリは史実をベースにしていますが、完全な正確性は保証しません。特に駆逐艦データは不完全です。</p>
+        <p className="text-center">※このアプリは史実をベースにしていますが、完全な正確性は保証しません。また、データは継続的に更新・改善しています。</p>
       </div>
     </div>
   );
