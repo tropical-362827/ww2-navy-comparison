@@ -163,6 +163,7 @@ const WW2NavyComparison = () => {
       <div className="mb-6 bg-white p-4 rounded shadow">
         <h2 className="text-lg font-bold mb-2">このアプリについて</h2>
         <p className="mb-2">このウェブアプリでは、第二次世界大戦期間中(1936年〜1945年)の主要国の海軍艦艇を比較することができます。タイムラインスライダーを動かすことで、各時点での各国の保有艦艇数の推移を確認できます。</p>
+        <p className="mb-2">間違いを見つけた場合、<a href="https://github.com/tropical-362827/ww2-navy-comparison" className="text-blue-500 hover:text-blue-700 underline">tropical-362827/ww2-navy-comparison</a>に報告していただけると助かります。</p>
         <p className="mb-2">以下の機能が利用できます：</p>
         <ul className="list-disc pl-6 mb-3">
           <li>タイムライン(1936年〜1945年)での各国艦艇保有数の変化を確認</li>
@@ -176,8 +177,7 @@ const WW2NavyComparison = () => {
           <h3 className="font-bold">データの正確性に関する注意</h3>
           <ul className="list-disc pl-6">
             <li>実際の史実と比べて一部の艦艇や情報が省略されている場合があります。</li>
-            <li>就役日や退役/沈没日には一部不正確な情報が含まれている可能性があります。</li>
-            <li>このアプリは教育・娯楽目的であり、正確な史実研究のためには専門文献を参照してください。</li>
+            <li>就役日や退役/沈没日には不正確な情報が含まれている可能性があります。</li>
           </ul>
         </div>
       </div>
@@ -285,7 +285,6 @@ const WW2NavyComparison = () => {
                         <div
                           key={i}
                           className="mr-1 mb-1 cursor-help relative group"
-                          title={`${ship.name}: 就役 ${formatFullDate(ship.commissioned)} - ${ship.fate ? `退役/沈没 ${formatFullDate(ship.fate)}` : '現役'}`}
                         >
                           {shipType.icon}
                           <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-gray-800 text-white text-xs rounded p-2 w-56 z-10 shadow-lg">
@@ -388,7 +387,7 @@ const WW2NavyComparison = () => {
       </div>
 
       <div className="mt-4 text-sm text-gray-600">
-        <p className="text-center">※このアプリは史実をベースにしていますが、完全な正確性は保証しません。また、データは継続的に更新・改善しています。</p>
+        <p className="text-center">※このアプリは史実をベースにしていますが、完全な正確性は保証しません。</p>
       </div>
     </div>
   );
