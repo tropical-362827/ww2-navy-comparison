@@ -327,7 +327,6 @@ const WW2NavyComparison = () => {
                         <div
                           key={i}
                           className="mr-1 mb-1 cursor-help relative group"
-                          title={`${ship.name}: 就役 ${formatFullDate(ship.commissioned)} - ${ship.fate ? `退役/沈没 ${formatFullDate(ship.fate)}` : '現役'}`}
                         >
                           {shipType.icon}
                           <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-gray-800 text-white text-xs rounded p-2 w-56 z-10 shadow-lg">
