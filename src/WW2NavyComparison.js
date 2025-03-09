@@ -162,16 +162,8 @@ const WW2NavyComparison = () => {
       {/* アプリ説明 */}
       <div className="mb-6 bg-white p-4 rounded shadow">
         <h2 className="text-lg font-bold mb-2">このアプリについて</h2>
-        <p className="mb-2">このウェブアプリでは、第二次世界大戦期間中(1936年〜1945年)の主要国の海軍艦艇を比較することができます。タイムラインスライダーを動かすことで、各時点での各国の保有艦艇数の推移を確認できます。</p>
-        <p className="mb-2">間違いを見つけた場合、<a href="https://github.com/tropical-362827/ww2-navy-comparison" className="text-blue-500 hover:text-blue-700 underline">tropical-362827/ww2-navy-comparison</a>に報告していただけると助かります。</p>
-        <p className="mb-2">以下の機能が利用できます：</p>
-        <ul className="list-disc pl-6 mb-3">
-          <li>タイムライン(1936年〜1945年)での各国艦艇保有数の変化を確認</li>
-          <li>任意の2カ国間で艦艇保有状況を比較</li>
-          <li>表示する艦種をカスタマイズ</li>
-          <li>各艦艇にマウスを合わせると詳細情報を表示</li>
-          <li>各月で起きた艦艇の就役・撃沈/退役イベントを確認</li>
-        </ul>
+        <p className="mb-2">このウェブアプリでは、第二次世界大戦期間中(1936年〜1945年)の主要国の海軍艦艇を比較することができます。スライダーを動かすことで、各時点での各国の保有艦艇数の推移を確認できます。</p>
+        <p className="mb-2">間違いを見つけた場合、<a href="https://github.com/tropical-362827/ww2-navy-comparison/issues" className="text-blue-500 hover:text-blue-700 underline">ここへissueとして登録</a>していただけると助かります。</p>
 
         <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 mt-2">
           <h3 className="font-bold">データの正確性に関する注意</h3>
@@ -180,23 +172,6 @@ const WW2NavyComparison = () => {
             <li>就役日や退役/沈没日には不正確な情報が含まれている可能性があります。</li>
           </ul>
         </div>
-      </div>
-
-      {/* 日付スライダー */}
-      <div className="mb-6">
-        <div className="flex justify-between mb-2">
-          <span>1936年1月</span>
-          <span className="font-bold">{formatDate(date)}</span>
-          <span>1945年12月</span>
-        </div>
-        <input
-          type="range"
-          min={minSliderValue}
-          max={maxSliderValue}
-          value={(date.getFullYear() - 1936) * 12 + date.getMonth()}
-          onChange={handleSliderChange}
-          className="w-full"
-        />
       </div>
 
       {/* 艦種フィルター */}
@@ -259,6 +234,23 @@ const WW2NavyComparison = () => {
         </div>
       </div>
 
+      {/* 日付スライダー */}
+      <div className="mb-6">
+        <div className="flex justify-between mb-2">
+          <span>1936年1月</span>
+          <span className="font-bold">{formatDate(date)}</span>
+          <span>1945年12月</span>
+        </div>
+        <input
+          type="range"
+          min={minSliderValue}
+          max={maxSliderValue}
+          value={(date.getFullYear() - 1936) * 12 + date.getMonth()}
+          onChange={handleSliderChange}
+          className="w-full"
+        />
+      </div>
+
       {/* 艦船比較 */}
       <div className="flex flex-col sm:flex-row gap-4 mb-6">
         {/* 左側の国 */}
@@ -274,7 +266,7 @@ const WW2NavyComparison = () => {
                 return (
                   <div key={shipType.id} className={index > 0 ? 'mt-2' : ''}>
                     <div className="flex items-center mb-1">
-                      <div className="w-28 font-bold">
+                      <div className="w-35 font-bold">
                         <span className="mr-1 text-xl">{shipType.icon}</span>
                         <span>{shipType.name}</span>
                       </div>
@@ -316,7 +308,7 @@ const WW2NavyComparison = () => {
                 return (
                   <div key={shipType.id} className={index > 0 ? 'mt-2' : ''}>
                     <div className="flex items-center mb-1">
-                      <div className="w-28 font-bold">
+                      <div className="w-35 font-bold">
                         <span className="mr-1 text-xl">{shipType.icon}</span>
                         <span>{shipType.name}</span>
                       </div>

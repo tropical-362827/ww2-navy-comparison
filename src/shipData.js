@@ -13,7 +13,7 @@ export const countries = [
 
 export const shipTypes = [
   { id: 'carrier', name: '正規空母', icon: '🛫' },
-  { id: 'lightCarrier', name: '軽空母', icon: '✈️' },
+  { id: 'lightCarrier', name: '軽空母・護衛空母', icon: '✈️' },
   { id: 'battleship', name: '戦艦', icon: '🚢' },
   { id: 'battlecruiser', name: '巡洋戦艦', icon: '⚓' },
   { id: 'heavyCruiser', name: '重巡洋艦', icon: '⛴️' },
