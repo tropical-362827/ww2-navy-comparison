@@ -357,12 +357,12 @@ const WW2NavyComparison = () => {
           </div>
         )}
 
-        {/* 艦船イベント */}
+        {/* 艦船イベント 駆逐艦データはまだ完全でないので省いておく */}
         {monthEvents.filter(event => event.type !== 'battle').length > 0 ? (
           <div>
             <h3 className="text-lg font-semibold mb-2 border-b pb-1 border-gray-300">艦船の動き</h3>
             <ul className="list-disc pl-5 space-y-1">
-              {monthEvents.filter(event => event.type !== 'battle').map((event, index) => (
+              {monthEvents.filter(event => event.type !== 'battle' && event.shipType !== '駆逐艦').map((event, index) => (
                 <li key={index}>
                   {formatEventDate(event.date)} - {event.country}の{event.shipType}「{event.ship}」が
                   {event.type === 'commissioned' ? '就役' : '沈没/退役'}
