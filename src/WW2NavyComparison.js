@@ -193,7 +193,7 @@ const WW2NavyComparison = () => {
               <label htmlFor={`filter-${shipType.id}`} className="flex items-center">
                 <span>{shipType.name}</span>
                 {shipType.id === 'destroyer' && (
-                  <span className="text-xs text-gray-500 ml-1">（とても不完全）</span>
+                  <span className="text-xs text-gray-500 ml-1">（不完全）</span>
                 )}
               </label>
             </div>
