@@ -193,7 +193,7 @@ const WW2NavyComparison = () => {
               <label htmlFor={`filter-${shipType.id}`} className="flex items-center">
                 <span>{shipType.name}</span>
                 {shipType.id === 'destroyer' && (
-                  <span className="text-xs text-gray-500 ml-1">（とても不完全）</span>
+                  <span className="text-xs text-gray-500 ml-1">（不完全）</span>
                 )}
               </label>
             </div>
@@ -282,7 +282,7 @@ const WW2NavyComparison = () => {
                           <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-gray-800 text-white text-xs rounded p-2 w-56 z-10 shadow-lg">
                             <p className="font-bold">{ship.name}</p>
                             <p>就役: {formatFullDate(ship.commissioned)}</p>
-                            <p>{ship.fate ? `退役/沈没: ${formatFullDate(ship.fate)}` : '現役'}</p>
+                            <p>{ship.fate ? `退役/沈没: ${formatFullDate(ship.fate)}` : '退役日未設定'}</p>
                             {ship.notes && <p className="text-gray-300 mt-1">{ship.notes}</p>}
                           </div>
                         </div>
